@@ -2,13 +2,16 @@ require 'test/unit'
 require 'selenium-webdriver'
 require_relative 'my_module'
 
-class TestRegistration < Test::Unit::TestCase
+class AllRegistrationTest < Test::Unit::TestCase
 
   include MyModule
 
   def setup
-    @driver = Selenium::WebDriver.for :firefox
+    #@driver = Selenium::WebDriver.for :firefox
     @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+    Selenium::WebDriver::Chrome.driver_path='/Users/sergeim/chromedriver'
+    @driver = Selenium::WebDriver.for :chrome
+
   end
 
   def test_registered_user

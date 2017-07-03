@@ -1,6 +1,7 @@
 module MyModule
   def register_user
-    @driver.navigate.to 'http://demo.redmine.org'
+    @driver.get 'http://demo.redmine.org'
+    sleep 5
     @driver.find_element(:class, 'register').click
 
     @wait.until {@driver.find_element(:id, 'user_login').displayed?}
@@ -20,7 +21,7 @@ module MyModule
   end
 
   def register_additional_user
-    @driver.navigate.to 'http://demo.redmine.org'
+    @driver.get 'http://demo.redmine.org'
     @wait.until {@driver.find_element(:class, 'register').displayed?}
     @driver.find_element(:class, 'register').click
 
@@ -55,7 +56,7 @@ module MyModule
   end
 
   def change_user_password
-    @driver.navigate.to 'http://demo.redmine.org/my/password'
+    @driver.get 'http://demo.redmine.org/my/password'
     @driver.find_element(:id, 'password').send_keys 'this_is_my_new_userX_pwd'
     @driver.find_element(:id, 'new_password').send_keys 'this_is_my_new_new_userX_pwd'
     @driver.find_element(:id, 'new_password_confirmation').send_keys 'this_is_my_new_new_userX_pwd'
@@ -66,7 +67,7 @@ module MyModule
 
   def create_project
     @projectname=('smproject' + rand(99999).to_s)
-    @driver.navigate.to 'http://demo.redmine.org/projects/new'
+    @driver.get 'http://demo.redmine.org/projects/new'
     @wait.until {@driver.find_element(:id, 'project_name').displayed?}
     @driver.find_element(:id, 'project_name').send_keys @projectname
     @driver.find_element(:id, 'project_identifier').send_keys 'smproject'
